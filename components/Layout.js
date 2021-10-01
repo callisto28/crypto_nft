@@ -14,8 +14,8 @@ export default function Layout({ children, pages }) {
                 <h1 className="text-3xl mb-2 text-white">Crypto and NFT </h1>
                 <div className="inline-grid grid-cols-1 gap-x-10 p-4">
                     {/*  eslint-disable-next-line @next/next/link-passhref */}
-                    <Link href="/">
-                        <button className="bg-blue-200 p-3 m-2 rounded-3xl hover:shadow-md border-2 border-blue-300">Accueil</button>
+                    <Link href="/" scroll>
+                        <button className="bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-yellow-500 p-3 m-2 rounded-3xl hover:shadow-md border-2 border-blue-300">Accueil</button>
                     </Link>
                     {/* <Link href="/crypto">
                         <button className="bg-blue-200 p-3 m-2 rounded-3xl hover:shadow-md border-2 border-blue-300">Cryptomonnaies</button>
