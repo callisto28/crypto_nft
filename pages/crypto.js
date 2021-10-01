@@ -6,9 +6,9 @@ export default function Home({ res }) {
 
     // console.log(res);
     return (<Layout page='Accueil Crypto'>
-        <ul className="grid grid-cols-3 gap-2">
+        <ul className="grid lg:grid-cols-3 gap-2 sm:grid-cols-1">
             {res.map((crypt, index) => (
-                <li key={index} className="relative hover:shadow-md p-5 border border-blue-700 rounded-3xl bg-blue-100 mx-2">
+                <li key={index} className="relative hover:shadow-md p-5 border border-blue-700 rounded-3xl bg-gradient-to-r from-green-100 to-blue-200 mx-2">
                     <Link href={`/`}>
                         <a className="rounded-md">
                             <div className="text-center">

@@ -24,15 +24,15 @@ export default function Layout({ children, pages }) {
                         <button className="bg-blue-200 p-3 m-2 rounded-3xl hover:shadow-md border-2 border-blue-300">Nft</button>
                     </Link> */}
                 </div>
-                <div>
-                    <Image src="/img/main.jpg" alt="logo" width="400" height="35" className="rounded-3xl object-cover object-center" quality={50} />
+                <div className="border-t-4">
+                    {/* <Image src="/img/main.jpg" alt="logo" width="400" height="35" className="rounded-3xl object-cover object-center" quality={50} /> */}
                 </div>
             </header>
             <main className="grid-cols-1 p-4">{children}</main>
 
-            <footer className="p-10">
+            <footer className="p-10 border-t-4">
 
-                <Image src="/img/main.jpg" alt="logo" width="400" height="35" className="rounded-3xl object-cover object-center" quality={50} />
+                {/* <Image src="/img/main.jpg" alt="logo" width="400" height="35" className="rounded-3xl object-cover object-center" quality={50} /> */}
                 <ul className=" pt-10 pb-4 flex justify-around">
                     <li className="text-white">A propos</li>
                     <li className="text-white"><a href="https://seb4dev.works/" target="_blank" rel="noreferrer">Seb4Dev</a></li>

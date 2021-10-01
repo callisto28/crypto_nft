@@ -7,13 +7,13 @@ export default function Home({ res1 }) {
     // console.log(res1);
 
     return (<Layout page='Accueil Nft'>
-        <div className="container text-white">
+        <div className="text-white text-center">
             {/* eslint-disable-next-line react/no-unescaped-entities */}
-            <p>Voici une liste d'événements qui se produisent sur les actifs suivis par OpenSea. Le champ "event_type" indique de quel type d'événement il s'agit (transfert, enchère réussie, etc.).</p>
+            <p className="text-center py-2">Voici une liste d'événements qui se produisent sur les actifs suivis par OpenSea. Le champ "event_type" indique de quel type d'événement il s'agit (transfert, enchère réussie, etc.).</p>
         </div>
-        <ul className="grid grid-cols-2 gap-2">
+        <ul className="grid lg:grid-cols-3 gap-2 sm:grid-cols-1 py-2">
             {res1.asset_events.map((nft, index1) => (
-                <li key={index1} className="relative hover:shadow-md p-5 border border-blue-700 rounded-3xl bg-blue-100 mx-2">
+                <li key={index1} className="relative hover:shadow-md p-5 border border-blue-700 rounded-3xl bg-gradient-to-r from-green-100 to-blue-200 mx-2">
                     <Link href={`/`}>
                         <a className="rounded-md h-10">
                             <div className="text-center">
