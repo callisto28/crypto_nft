@@ -21,16 +21,18 @@ const Home = () => {
 
     }
 
+
+
     return (
         <Layout page='Accueil Crypto'>
             <div className='p-8 justify-center items-center flex'>
-                <form className='flex'>
-                    <input type="text"
+                <form className='flex' autoComplete='off'>
+                    <input type="select"
                         autoCapitalize='characters'
                         className="bg-gray-200 shadow-inner rounded-l p-2 flex-1"
                         placeholder="Search for Crypto"
                         value={input}
-                        onChange={e => setInput(e.target.value.toUpperCase())} />
+                        onChange={e => setInput(e.target.value.toUpperCase(''))} />
                     <button className="bg-blue-600 hover:bg-blue-700 duration-300 text-white shadow p-2 rounded-r"
                         type="submit"
                         onClick={search}>
