@@ -28,7 +28,6 @@ const Home = () => {
             <div className='p-8 justify-center items-center flex'>
                 <form className='flex' autoComplete='off'>
                     <input type="select"
-                        autoCapitalize='characters'
                         className="bg-gray-200 shadow-inner rounded-l p-2 flex-1"
                         placeholder="Search for Crypto"
                         value={input}
