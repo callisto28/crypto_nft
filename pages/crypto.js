@@ -9,7 +9,7 @@ export default function Home({ res }) {
         <Link href={'/search'}>
             <div className='p-8 justify-center items-center flex'>
                 <form className='flex'>
-                    {/* <input className='bg-gray-200 shadow-inner rounded-l p-2 flex-1' id='crytpo' type='text' aria-label='crypto' placeholder='Rechercher une Crypto' /> */}
+
                     <button className='bg-blue-600 hover:bg-blue-700 duration-300 text-white shadow p-2 rounded-r' type='submit'>
                         Rechercher une Crypto
                     </button>
@@ -56,7 +56,7 @@ export async function getStaticProps() {
 
     try {
         const res = await fetch(
-            `https://api.nomics.com/v1/currencies/ticker?key=${API_KEY}=BTC,ETH,USDT,ADA,BNB,XRP,SOL,USDC,DOT,DOGE,ENJ,LTC&interval=1d,30d&convert=EUR&per-page=100&page=1`
+            `https://api.nomics.com/v1/currencies/ticker?key=a7aa7ea4b3e128b4497f815cd1aa2c9198e51909&ids=BTC,ETH,USDT,ADA,BNB,XRP,SOL,USDC,DOT,DOGE,ENJ,LTC&interval=1d,30d&convert=EUR&per-page=100&page=1`
         ).then((res) => res.json());
         return {
             props: { res }

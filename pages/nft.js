@@ -29,7 +29,9 @@ export default function Home({ res1 }) {
                         <p className="text-center text-red-900 font-bold">Description : {nft.asset.collection.description}</p>
 
 
-                        <p className="text-center text-gray-900">URL Poject : {(nft.asset.collection.external_url === null) ? (<span className="text-red-600"> Aucune URL  </span>) : (<span className="text-blue-600">{nft.asset.collection.external_url} </span>)}</p>
+                        <p className="text-center text-gray-900">URL Poject : {(nft.asset.collection.external_url === null) ?
+                            (<span className="text-red-600"> Aucune URL  </span>) :
+                            (<span className="text-blue-600">{nft.asset.collection.external_url} </span>)}</p>
                         <h3 className="text-center">Event : {nft.event_type}</h3>
                         <p className="text-center text-red-300">Eth Price :
 
@@ -63,7 +65,7 @@ export async function getStaticProps() {
 
     try {
         const res1 = await fetch(
-            "https://api.opensea.io/api/v1/events?only_opensea=false&offset=0&limit=20"
+            "https://api.opensea.io/api/v1/events?only_opensea=false&offset=0&limit=50"
         ).then((res1) => res1.json());
 
 
