@@ -7,6 +7,7 @@ export default function Home({ res1 }) {
     console.log(res1, "res1");
 
 
+
     return (<Layout page='Accueil Nft'>
         <div className="text-white text-center">
             {/* eslint-disable-next-line react/no-unescaped-entities */}
@@ -14,7 +15,8 @@ export default function Home({ res1 }) {
         </div>
         <ul className="grid lg:grid-cols-3 gap-2 sm:grid-cols-1 py-2">
             {res1.asset_events.map((nft, index1) => (
-                <li key={index1} className="relative hover:shadow-md p-5 border border-blue-700 rounded-3xl bg-gradient-to-r from-green-100 to-blue-200 mx-2">
+
+                <li key={index1} className="relative hover:shadow-md p-5 border border-blue-500 rounded-3xl bg-gradient-to-r from-green-100 to-blue-100 mx-2">
 
                     <a className="rounded-md h-10" href={nft.asset.collection.external_url} target="_blank" rel="noreferrer">
                         <div className="text-center" >
@@ -24,16 +26,23 @@ export default function Home({ res1 }) {
                         </div>
                         <h2 className="text-center text-2xl uppercase tracking-wider font-bold text-gray-800"> Name NFT : {nft.asset.asset_contract.name}</h2>
                         <p className="text-center text-xl uppercase tracking-wider font-bold text-gray-800">Symbol : {nft.asset.asset_contract.symbol}</p>
-                        <p className="text-center text-gray-700">Description : {nft.asset.collection.description}</p>
-                        <h3 className="text-center">URL Poject : {nft.asset.collection.external_url}</h3>
+                        <p className="text-center text-red-900 font-bold">Description : {nft.asset.collection.description}</p>
+
+
+                        <p className="text-center text-gray-900">URL Poject : {(nft.asset.collection.external_url === null) ? (<span className="text-red-600"> Aucune URL  </span>) : (<span className="text-blue-600">{nft.asset.collection.external_url} </span>)}</p>
                         <h3 className="text-center">Event : {nft.event_type}</h3>
-                        {/* <h3 className="text-center text-black">Price : {parseFloat(nft.price).toFixed(2)} EUR</h3>
-                            <p className="text-center text-gray-800">Variation 1d : <span>{parseFloat(nft['1d'].price_change).toFixed(2) + "EUR"}</span>
-                                {nft["1d"].price_change_pct < 0 ? (<span className="text-red-600 font-bold">&#x2798;</span>) : (<span className="text-green-600 font-bold">&#x279A;</span>)}
-                            </p>
-                            <p className="text-center text-gray-800">Variation 30d : <span>{parseFloat(nft['30d'].price_change).toFixed(2) + "EUR"}</span>
-                                {nft["30d"].price_change_pct < 0 ? (<span className="text-red-600 font-bold">&#x2798;</span>) : (<span className="text-green-600 font-bold">&#x279A;</span>)}
-                            </p> */}
+                        <p className="text-center text-red-300">Eth Price :
+
+                            {(nft.payment_token === null) ? (<span className="text-red-600 ">Aucune valeur</span>) : (<span className="text-blue-600 ">{parseFloat(nft.payment_token.eth_price).toFixed(2)} ETH </span>)}
+
+
+                        </p>
+                        <p className="text-center text-red-300">Eth Price :
+
+                            {(nft.payment_token === null) ? (<span className="text-red-600 ">Aucune valeur</span>) : (<span className="text-green-600 ">{parseFloat(nft.payment_token.usd_price).toFixed(2)} USD </span>)}
+
+
+                        </p>
 
 
                     </a>
@@ -48,7 +57,6 @@ export default function Home({ res1 }) {
 
 
     </Layout>);
-
 }
 
 export async function getStaticProps() {
@@ -74,3 +82,4 @@ export async function getStaticProps() {
     }
 
 }
+

@@ -32,10 +32,14 @@ export default function Home({ res, id }) {
                             <p className="text-center text-gray-700">{crypt.symbol}</p>
                             <h3 className="text-center text-black">Price: {parseFloat(crypt.price).toFixed(2)} EUR</h3>
                             <p className="text-center text-gray-800">Variation 1d: <span>{parseFloat(crypt['1d'].price_change).toFixed(2) + "EUR"}</span>
-                                {crypt["1d"].price_change_pct < 0 ? (<span className="text-red-600 font-bold">&#x2798; </span>) : (<span className="text-green-600 font-bold">&#x279A; </span>)}
+                                {crypt["1d"].price_change_pct < 0 ?
+                                    (<span className="text-red-600 font-bold">&#x2798; </span>) :
+                                    (<span className="text-green-600 font-bold">&#x279A; </span>)}
                             </p>
                             <p className="text-center text-gray-800">Variation 30d: <span>{parseFloat(crypt['30d'].price_change).toFixed(2) + "EUR"}</span>
-                                {crypt["30d"].price_change_pct < 0 ? (<span className="text-red-600 font-bold">&#x2798; </span>) : (<span className="text-green-600 font-bold">&#x279A; </span>)}
+                                {crypt["30d"].price_change_pct < 0 ?
+                                    (<span className="text-red-600 font-bold">&#x2798; </span>) :
+                                    (<span className="text-green-600 font-bold">&#x279A; </span>)}
                             </p>
 
 
