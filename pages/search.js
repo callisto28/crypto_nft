@@ -31,7 +31,10 @@ const Home = () => {
                         className="bg-gray-200 shadow-inner rounded-l p-2 flex-1"
                         placeholder="Search for Crypto"
                         value={input}
-                        onChange={e => setInput(e.target.value.toUpperCase())} />
+                        // onChange={e => setInput(e.target.value.toUpperCase())} 
+                        onChange={e => setInput(e.target.value)}
+
+                    />
                     <button className="bg-blue-600 hover:bg-blue-700 duration-300 text-white shadow p-2 rounded-r"
                         type="submit"
                         onClick={search}>
