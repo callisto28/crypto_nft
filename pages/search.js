@@ -1,26 +1,20 @@
 import Layout from "../components/Layout";
 import { useState } from "react";
+import fetch from "node-fetch"
+import Image from 'next/image';
 
+const API_KEY = process.env.API_KEY;
 
-
-const Home = () => {
-
-    const [input, setInput] = useState([]);
-    const [test, setTest] = useState([]);
+function Home({ data }) {
 
     const search = async (e) => {
         e.preventDefault()
-
-
-        const res = await fetch(`https://api.nomics.com/v1/currencies/ticker?key=a7aa7ea4b3e128b4497f815cd1aa2c9198e51909&ids=${input}&interval=1d,30d&convert=EUR&per-page=100&page=1`)
-            .then((res) => res.json())
-        console.log(res, "stock res");
-
-        setTest(res)
+        setTest(data)
         setInput([])
-
     }
-
+    const [input, setInput] = useState([]);
+    const [test, setTest] = useState([]);
+    console.log(test, 'input');
 
 
     return (
@@ -31,9 +25,7 @@ const Home = () => {
                         className="bg-gray-200 shadow-inner rounded-l p-2 flex-1"
                         placeholder="Search for Crypto"
                         value={input}
-                        // onChange={e => setInput(e.target.value.toUpperCase())} 
-                        onChange={e => setInput(e.target.value)}
-
+                        onChange={e => setInput(e.target.value.toUpperCase())}
                     />
                     <button className="bg-blue-600 hover:bg-blue-700 duration-300 text-white shadow p-2 rounded-r"
                         type="submit"
@@ -42,22 +34,37 @@ const Home = () => {
                     </button>
                 </form>
             </div>
-            <div className="flex lg:justify-center sm:justify-center">
-                {test && test.map((crypt, index) => (
+            <div className="grid lg:grid-cols-4 gap-2 sm:grid-cols-1">
+                {test && test.filter((crypt) => {
+                    if (input == "") {
+                        return crypt
+                    } else if (crypt.symbol.toUpperCase().includes(input.toUpperCase())) {
+                        return crypt
+                    }
+                }).map((crypt, index) => (
 
                     <a key={index} className="rounded-md ">
                         <div className="relative hover:shadow-md p-5 border border-blue-700 rounded-3xl bg-gradient-to-r from-green-100 to-blue-200 mx-2">
-                            {/* eslint-disable-next-line @next/next/no-img-element */}
+
                             <img src={crypt.logo_url} alt={crypt.logo_url} className="w-20 h-20 mx-auto m-6" />
 
                             <h2 className="text-center text-2xl uppercase tracking-wider font-bold text-gray-800">{crypt.name}</h2>
                             <p className="text-center text-gray-700">{crypt.symbol}</p>
                             <h3 className="text-center text-black">Price: {parseFloat(crypt.price).toFixed(2)} EUR</h3>
-                            <p className="text-center text-gray-800">Variation 1d: <span>{parseFloat(crypt['1d'].price_change).toFixed(2) + "EUR"}</span>
-                                {crypt["1d"].price_change_pct < 0 ? (<span className="text-red-600 font-bold">&#x2798; </span>) : (<span className="text-green-600 font-bold">&#x279A; </span>)}
+                            <p className="text-center text-gray-800">Variation sur 1d: <span>{parseFloat(crypt['1d'].price_change).toFixed(2) + "EUR"}</span>
+                                {crypt["1d"].price_change_pct < 0 ?
+                                    (<span className="text-red-600 font-bold">&#x2798; </span>) :
+                                    (<span className="text-green-600 font-bold">&#x279A; </span>)}
                             </p>
-                            <p className="text-center text-gray-800">Variation 30d: <span>{parseFloat(crypt['30d'].price_change).toFixed(2) + "EUR"}</span>
-                                {crypt["30d"].price_change_pct < 0 ? (<span className="text-red-600 font-bold">&#x2798; </span>) : (<span className="text-green-600 font-bold">&#x279A; </span>)}
+                            <p className="text-center text-gray-600">Variation sur 7d: <span>{parseFloat(crypt['7d'].price_change).toFixed(2) + "EUR"}</span>
+                                {crypt["7d"].price_change_pct < 0 ?
+                                    (<span className="text-red-600 font-bold">&#x2798; </span>) :
+                                    (<span className="text-green-600 font-bold">&#x279A; </span>)}
+                            </p>
+                            <p className="text-center text-gray-800">Variation sur 30d: <span>{parseFloat(crypt['30d'].price_change).toFixed(2) + "EUR"}</span>
+                                {crypt["30d"].price_change_pct < 0 ?
+                                    (<span className="text-red-600 font-bold">&#x2798; </span>) :
+                                    (<span className="text-green-600 font-bold">&#x279A; </span>)}
                             </p>
                         </div>
                     </a>
@@ -66,7 +73,22 @@ const Home = () => {
         </Layout>
     )
 
-}
+};
 
-export default Home
+export async function getStaticProps() {
+
+    const res = await fetch(`https://api.nomics.com/v1/currencies/ticker?key=${API_KEY}interval=1d,7d,30d&convert=EUR&status=active&sort=rank&per-page=50&page=1`);
+    const data = await res.json();
+
+
+
+    return {
+        props: {
+            data
+        }
+    }
+
+}
+export default Home;
+
 
