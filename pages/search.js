@@ -77,8 +77,8 @@ function Home({ data }) {
 
 export async function getStaticProps() {
 
-    const res = await fetch(`https://api.nomics.com/v1/currencies/ticker?key=a7aa7ea4b3e128b4497f815cd1aa2c9198e51909&interval=1d&convert=EUR&per-page=100&page=1`);
-    const data = await res.json();
+    const data = await fetch(`https://api.nomics.com/v1/currencies/ticker?key=a7aa7ea4b3e128b4497f815cd1aa2c9198e51909&interval=1d&convert=EUR&per-page=100&page=1`)
+        .then((data) => data.json());
 
 
 
