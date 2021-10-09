@@ -4,7 +4,7 @@ import Layout from "../components/Layout";
 
 export default function Home({ res1 }) {
 
-    console.log(res1, "res1");
+    // console.log(res1, "res1");
 
 
 

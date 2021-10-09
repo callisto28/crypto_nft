@@ -75,24 +75,28 @@ function Home({ data }) {
 
 };
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
 
-    const data = await fetch(`https://api.nomics.com/v1/currencies/ticker?key=${API_KEY}&interval=1d&convert=EUR&per-page=100&page=1`, {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json'
+    const res = await fetch(`https://api.nomics.com/v1/currencies/ticker?key=${API_KEY}&ids&interval=1d&convert=EUR&per-page=100&page=1`)
+    const data = await res.json()
+    if (!data) {
+        return {
+            notFouund: true,
         }
-    }).then(data => data.json())
+    }
+
     return {
         props: {
             data
         }
     }
-
 }
 
 
-// .then((data) => data.json());
+
+
+
+
 
 
 
@@ -101,3 +105,4 @@ export default Home;
 
 
 
+// .then(res => res.json())
