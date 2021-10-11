@@ -83,9 +83,12 @@ export async function getStaticProps() {
 
     const res = await fetch(`https://api.nomics.com/v1/currencies/ticker?key=${API_KEY}&ids&interval=1d&convert=EUR&per-page=100&page=1`)
     const data = await res.json()
+    const stringified = JSON.stringify(data);
+    const parsedObj = JSON.parse(stringified);
+    console.log(parsedObj);
     return {
         props: {
-            data: data
+            data: parsedObj
         }
     }
 }
