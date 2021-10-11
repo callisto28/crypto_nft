@@ -81,14 +81,13 @@ function Home({ data }) {
 export async function getStaticProps() {
     const API_KEY = process.env.API_KEY;
 
-    const res = await fetch(`https://api.nomics.com/v1/currencies/ticker?key=${API_KEY}&ids&interval=1d&convert=EUR&per-page=100&page=1`)
+    const res = await fetch(`https://api.nomics.com/v1/currencies/ticker?key=${API_KEY}&ids=BTC,ETH,HEX,ADA,USDT,BNB&interval=1d&convert=EUR&per-page=100&page=1`)
     const data = await res.json()
     return {
         props: {
-            data: data || {}
+            data: data
         }
     }
-}
 
 
 
@@ -98,5 +97,5 @@ export async function getStaticProps() {
 
 
 
-export default Home;
+    export default Home;
 
