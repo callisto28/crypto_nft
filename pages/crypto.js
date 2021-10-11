@@ -6,7 +6,7 @@ export default function Home({ res }) {
 
     // console.log(res);
     return (<Layout page='Accueil Crypto'>
-        <Link href={'/search'}>
+        {/* <Link href={'/search'}>
             <div className='p-8 justify-center items-center flex'>
                 <form className='flex'>
 
@@ -15,7 +15,7 @@ export default function Home({ res }) {
                     </button>
                 </form>
             </div>
-        </Link>
+        </Link> */}
 
 
         <ul className="grid lg:grid-cols-3 gap-2 sm:grid-cols-1">
