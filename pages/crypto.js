@@ -1,6 +1,6 @@
 import Layout from "../components/Layout";
 import Link from "next/link";
-const API_KEY = process.env.API_KEY;
+
 
 export default function Home({ res }) {
 
@@ -53,6 +53,7 @@ export default function Home({ res }) {
 }
 
 export async function getStaticProps() {
+    const API_KEY = process.env.API_KEY;
 
     try {
         const res = await fetch(
