@@ -83,8 +83,8 @@ export default function Search({ data }) {
 
 export async function getStaticPaths() {
     const posts = await getTenCrypto()
-    const paths = posts.map((post) => ({
-        params: { id: post.id.toString() },
+    const paths = posts && posts.map((crypt) => ({
+        params: { crypto: crypt.id },
 
     }))
     console.log(paths, 'paths');
