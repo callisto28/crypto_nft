@@ -7,10 +7,10 @@ import { getTenCrypto } from "../../lib/api";
 
 
 export default function Search({ data }) {
-    // console.log(data, 'data');
+
     const [input, setInput] = useState([]);
     // const [test, setTest] = useState();
-    // console.log(test, 'input');
+
 
 
     const search = async (e) => {
@@ -87,7 +87,7 @@ export async function getStaticPaths() {
         params: { crypto: crypt.id },
 
     }))
-    console.log(paths, 'paths');
+
     return { paths, fallback: true }
 }
 

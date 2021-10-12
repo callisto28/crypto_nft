@@ -1,7 +1,7 @@
 import Layout from "../components/Layout";
 import Link from "next/link";
 import { getTenCrypto } from "../lib/api";
-const API_KEY = process.env.API_KEY;
+
 
 export default function Home({ res }) {
 
