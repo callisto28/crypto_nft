@@ -1,21 +1,24 @@
-import Layout from "../components/Layout";
+import Layout from "../../components/Layout";
 import { useState } from "react";
-import fetch from "node-fetch"
+import { getTenCrypto } from "../../lib/api";
 
 
 
 
-function Home({ data }) {
-    console.log(data, 'data');
+
+export default function Search({ data }) {
+    // console.log(data, 'data');
+    const [input, setInput] = useState([]);
+    // const [test, setTest] = useState();
+    // console.log(test, 'input');
+
+
     const search = async (e) => {
         e.preventDefault()
         // setTest(data)
         setInput([])
 
     }
-    const [input, setInput] = useState([]);
-    // const [test, setTest] = useState();
-    // console.log(test, 'input');
 
 
     return (
@@ -78,24 +81,23 @@ function Home({ data }) {
 
 };
 
-export async function getStaticProps() {
-    const API_KEY = process.env.API_KEY;
+export async function getStaticPaths() {
+    const posts = await getTenCrypto()
+    const paths = posts.map((post) => ({
+        params: { id: post.id.toString() },
 
-    const res = await fetch(`https://api.nomics.com/v1/currencies/ticker?key=${API_KEY}&ids=BTC,ETH,HEX,ADA,USDT,BNB&interval=1d&convert=EUR&per-page=100&page=1`)
-    const data = await res.json()
+    }))
+    console.log(paths, 'paths');
+    return { paths, fallback: true }
+}
+
+export async function getStaticProps({ params }) {
+    const data = await getTenCrypto(params.id)
     return {
         props: {
-            data: data
+            data
         }
     }
 
-
-
-
-
-
 }
-
-
-export default Home;
 
