@@ -10,13 +10,13 @@ export default function Home() {
 
     <div className="flex flex-row justify-evenly m-5 p-6 lg:flex-row sm:flex-col">
 
-      <Link href={`/crypto`}>
+      <Link href={`/posts/cryptos`}>
         <button>
           <Image src="/img/main.jpg" alt="logo" width="300" height="300" className="rounded-3xl object-cover object-center
           transition duration-800 ease-in-out  transform hover:-translate-y-1 hover:scale-90" quality={50} />
         </button>
       </Link>
-      <Link href={`/nft`}>
+      <Link href={`/posts/nft`}>
         <button>
           <Image src="/img/nft.png" alt="logo" width="300" height="300" className="rounded-3xl object-cover object-center
           transition duration-800 ease-in-out  transform hover:-translate-y-1 hover:scale-90" quality={50} />

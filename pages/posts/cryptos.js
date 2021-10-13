@@ -1,25 +1,22 @@
-import Layout from "../components/Layout";
+import Layout from "../../components/Layout";
 import Link from "next/link";
-import { getTenCrypto } from "../lib/api";
+import { getTenCrypto } from "../../lib/api";
 
 
 export default function Home({ res }) {
 
 
     return (<Layout page='Accueil Crypto'>
-        {/* <Link href={'/posts/crypto'}>
-            <div className='p-8 justify-center items-center flex'>
-                <form className='flex'>
-
-                    <button className='bg-blue-600 hover:bg-blue-700 duration-300 text-white shadow p-2 rounded-r' type='submit'>
-                        Rechercher une Crypto
-                    </button>
-                </form>
-            </div>
-        </Link> */}
+        <Link href="/posts/crypto" scroll>
+            <button className="bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-yellow-500 px-10 py-2 m-2 rounded-3xl hover:shadow-md border-2 border-blue-300">Search Crypto</button>
+        </Link>
+        <Link href="/posts/exchanges" scroll>
+            <button className="bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-yellow-500 px-10 py-2 m-2 rounded-3xl hover:shadow-md border-2 border-blue-300">List Exchanges</button>
+        </Link>
 
 
-        <ul className="grid lg:grid-cols-3 gap-2 sm:grid-cols-1">
+
+        <ul className="grid lg:grid-cols-3 gap-12 sm:grid-cols-1">
             {res.map((crypt, index) => (
                 <li key={index} className="relative hover:shadow-md p-5 border border-blue-700 rounded-3xl bg-gradient-to-r from-green-100 to-blue-200 mx-2">
                     <Link href={`/`}>
