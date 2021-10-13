@@ -1,4 +1,5 @@
-import Layout from "../components/Layout";
+import Layout from "../../components/Layout";
+import { getNft } from "../../lib/api";
 
 
 
@@ -38,7 +39,7 @@ export default function Home({ res1 }) {
 
 
                         </p>
-                        <p className="text-center text-red-300">Eth Price :
+                        <p className="text-center text-red-300">USD Price :
 
                             {(nft.payment_token === null) ? (<span className="text-red-600 ">Aucune valeur</span>) : (<span className="text-green-600 ">{parseFloat(nft.payment_token.usd_price).toFixed(2)} USD </span>)}
 
@@ -60,26 +61,13 @@ export default function Home({ res1 }) {
     </Layout>);
 }
 
-export async function getStaticProps() {
+export async function getStaticProps(params) {
 
-    try {
-        const res1 = await fetch(
-            "https://api.opensea.io/api/v1/events?only_opensea=false&offset=0&limit=50"
-        ).then((res1) => res1.json());
-
-
-
-
-
-
-        return {
-            props: { res1 },
-
+    const res1 = await getNft(params)
+    return {
+        props: {
+            res1
         }
-
-
-    } catch (err) {
-        console.error(err);
     }
 
 }
