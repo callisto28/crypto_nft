@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import Link from 'next/link';
-import Image from 'next/image';
+
 
 export default function Layout({ children, pages }) {
     return (
@@ -17,12 +17,10 @@ export default function Layout({ children, pages }) {
                     <Link href="/" scroll>
                         <button className="bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-yellow-500 px-10 py-2 m-2 rounded-3xl hover:shadow-md border-2 border-blue-300">Accueil</button>
                     </Link>
-                    <Link href="/search" scroll>
+                    <Link href="/posts/crypto" scroll>
                         <button className="bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-yellow-500 px-10 py-2 m-2 rounded-3xl hover:shadow-md border-2 border-blue-300">Search Crypto</button>
                     </Link>
-                    {/* <Link href="/nft">
-                        <button className="bg-blue-200 p-3 m-2 rounded-3xl hover:shadow-md border-2 border-blue-300">Nft</button>
-                    </Link> */}
+
                 </div>
                 <div className="border-t-4">
                 </div>

@@ -1,25 +1,32 @@
-import Layout from "../components/Layout";
+import Layout from "../../components/Layout";
 import { useState } from "react";
-import fetch from "node-fetch"
+import { getAllCrypto } from "../../lib/api";
+import Head from "next/head";
 
 
 
 
-function Home({ data }) {
-    console.log(data, 'data');
+
+export default function Search({ data }) {
+
+    const [input, setInput] = useState([]);
+    // const [test, setTest] = useState();
+    // console.log(test, 'input');
+
+
     const search = async (e) => {
         e.preventDefault()
         // setTest(data)
         setInput([])
 
     }
-    const [input, setInput] = useState([]);
-    // const [test, setTest] = useState();
-    // console.log(test, 'input');
 
 
     return (
         <Layout page='Accueil Crypto'>
+            <Head>
+                <title>{data.id}</title>
+            </Head>
             <div className='p-8 justify-center items-center flex'>
                 <form className='flex' autoComplete='off'>
                     <input type="select"
@@ -40,7 +47,7 @@ function Home({ data }) {
                     filter((crypt) => {
                         if (input == "") {
 
-                            return crypt
+                            return
                         } else if (crypt.symbol.toUpperCase().includes(input.toUpperCase())) {
 
                             return crypt
@@ -52,13 +59,13 @@ function Home({ data }) {
                             <div className="relative hover:shadow-md p-5 border border-blue-700 rounded-3xl bg-gradient-to-r from-green-100 to-blue-200 mx-2">
 
                                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                                <img src={crypt.logo_url} alt={crypt.logo_url} className="w-20 h-20 mx-auto m-6" />
+                                <img src={crypt.image} alt={crypt.image} className="w-20 h-20 mx-auto m-6" />
 
                                 <h2 className="text-center text-2xl uppercase tracking-wider font-bold text-gray-800">{crypt.name}</h2>
                                 <p className="text-center text-gray-700">{crypt.symbol}</p>
-                                <h3 className="text-center text-black">Price: {parseFloat(crypt.price).toFixed(2)} EUR</h3>
-                                <p className="text-center text-gray-800">Variation sur 24h: <span>{parseFloat(crypt['1d'].price_change).toFixed(2) + "EUR"}</span>
-                                    {crypt["1d"].price_change_pct < 0 ?
+                                <h3 className="text-center text-black">Price: {parseFloat(crypt.current_price).toFixed(2)} EUR</h3>
+                                <p className="text-center text-gray-800">Variation sur 24h: <span>{parseFloat(crypt.price_change_24h).toFixed(2) + "EUR"}</span>
+                                    {crypt.price_change_percentage_24h < 0 ?
                                         (<span className="text-red-600 font-bold">&#x2798; </span>) :
                                         (<span className="text-green-600 font-bold">&#x279A; </span>)}
                                 </p>
@@ -78,24 +85,25 @@ function Home({ data }) {
 
 };
 
+
+
 export async function getStaticProps() {
-    const API_KEY = process.env.API_KEY;
 
-    const res = await fetch(`https://api.nomics.com/v1/currencies/ticker?key=${API_KEY}&ids=BTC,ETH,HEX,ADA,USDT,BNB&interval=1d&convert=EUR&per-page=100&page=1`)
-    const data = await res.json()
-    return {
-        props: {
-            data: data
-        }
-    }
+    const data = await getAllCrypto()
 
-
-
-
-
+    console.log(data, 'data');
+    return { props: { data } }
 
 }
+// export async function getStaticPaths() {
+//     const posts = await getAllCrypto()
+//     console.log(posts, 'posts');
+//     const paths = posts.map((crypt) => ({
+//         params: { crypto: crypt.id },
 
+//     }))
+//     console.log(paths, 'paths');
 
-export default Home;
+//     return { paths, fallback: false }
+// }
 

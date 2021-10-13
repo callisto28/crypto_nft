@@ -1,12 +1,13 @@
 import Layout from "../components/Layout";
 import Link from "next/link";
+import { getTenCrypto } from "../lib/api";
 
 
 export default function Home({ res }) {
 
-    // console.log(res);
+
     return (<Layout page='Accueil Crypto'>
-        <Link href={'/search'}>
+        {/* <Link href={'/posts/crypto'}>
             <div className='p-8 justify-center items-center flex'>
                 <form className='flex'>
 
@@ -15,7 +16,7 @@ export default function Home({ res }) {
                     </button>
                 </form>
             </div>
-        </Link>
+        </Link> */}
 
 
         <ul className="grid lg:grid-cols-3 gap-2 sm:grid-cols-1">
@@ -52,22 +53,13 @@ export default function Home({ res }) {
 
 }
 
-export async function getStaticProps() {
-    const API_KEY = process.env.API_KEY;
-
-    try {
-        const res = await fetch(
-            `https://api.nomics.com/v1/currencies/ticker?key=a7aa7ea4b3e128b4497f815cd1aa2c9198e51909&ids=BTC,ETH,USDT,ADA,BNB,XRP,SOL,USDC,DOT,DOGE,ENJ,LTC&interval=1d,30d&convert=EUR&per-page=100&page=1`
-        ).then((res) => res.json());
-        return {
-            props: { res }
-
+export async function getStaticProps({ params }) {
+    const res = await getTenCrypto(params)
+    return {
+        props: {
+            res
         }
-
-
-    } catch (err) {
-        console.error(err);
     }
-}
 
+}
 

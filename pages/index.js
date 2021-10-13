@@ -3,7 +3,7 @@ import Link from "next/link";
 import Image from 'next/image';
 
 
-export default function Home({ res }) {
+export default function Home() {
 
 
   return (<Layout page='Accueil Crypto'>
