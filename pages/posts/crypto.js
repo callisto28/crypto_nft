@@ -97,7 +97,7 @@ export async function getStaticProps() {
 
     const data = await getAllCrypto()
 
-    console.log(data, 'data');
+
     return { props: { data } }
 
 }
