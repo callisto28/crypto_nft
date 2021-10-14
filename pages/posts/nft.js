@@ -67,7 +67,8 @@ export async function getStaticProps(params) {
     return {
         props: {
             res1
-        }
+        },
+        revalidate: 1,
     }
 
 }
