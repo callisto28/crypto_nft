@@ -16,7 +16,7 @@ export default function Home({ res }) {
 
 
 
-        <ul className="grid lg:grid-cols-3 gap-12 sm:grid-cols-1">
+        <ul className="grid lg:grid-cols-3 gap-12 md:grid-cols-2 md:gap-9 sm:grid-cols-1 sm:gap-5">
             {res.map((crypt, index) => (
                 <li key={index} className="relative hover:shadow-md p-5 border border-blue-700 rounded-3xl bg-gradient-to-r from-green-100 to-blue-200 mx-2">
                     <Link href={`/`}>
@@ -28,7 +28,7 @@ export default function Home({ res }) {
                             </div>
                             <h2 className="text-center text-2xl uppercase tracking-wider font-bold text-gray-800">{crypt.name}</h2>
                             <p className="text-center text-gray-700">{crypt.symbol}</p>
-                            <h3 className="text-center text-black">Price: {parseFloat(crypt.price).toFixed(2)} EUR</h3>
+                            <h3 className="text-center text-black">Price: {parseFloat(crypt.price).toFixed(2).toLocaleString()} EUR</h3>
                             <p className="text-center text-gray-800">Variation 1d: <span>{parseFloat(crypt['1d'].price_change).toFixed(2) + "EUR"}</span>
                                 {crypt["1d"].price_change_pct < 0 ?
                                     (<span className="text-red-600 font-bold">&#x2798; </span>) :
@@ -52,10 +52,12 @@ export default function Home({ res }) {
 
 export async function getStaticProps({ params }) {
     const res = await getTenCrypto(params)
+
     return {
         props: {
             res
-        }
+        },
+        revalidate: 1,
     }
 
 }

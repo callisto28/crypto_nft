@@ -4,23 +4,20 @@ import { getAllCrypto } from "../../lib/api";
 import Head from "next/head";
 
 
-
-
-
 export default function Search({ data }) {
 
     const [input, setInput] = useState([]);
     // const [test, setTest] = useState();
     // console.log(test, 'input');
 
+    const regex = new RegExp(`^${input}`);
 
-    const search = async (e) => {
+    const search = e => {
+        // setInput(e.target.value.toLowerCase());
         e.preventDefault()
         // setTest(data)
         setInput([])
-
     }
-
 
     return (
         <Layout page='Accueil Crypto'>
@@ -28,23 +25,28 @@ export default function Search({ data }) {
                 <title>{data.id}</title>
             </Head>
             <h2 className="text-white"> Voici la liste des 250 premières cryptomonnaies classées par leur Marketcap  </h2>
-            <h3 className="text-white"> Veuillez saisir la première lettre de la cryptomonnaie recherchée  </h3>
+            <h3 className="text-white"> Veuillez saisir la première lettre de la cryptomonnaie recherchée ou le nom de votre cryptomonnaie  </h3>
+            <span className="text-red-600"> Exemple : Bitcoin, BTC, btc </span>
             <div className='p-8 justify-center items-center flex'>
 
                 <form className='flex' autoComplete='off'>
-                    <input type="text"
+                    <input type="search"
                         className="bg-gray-200 shadow-inner rounded-l p-3 flex-1"
                         placeholder="Search Crypto here"
                         value={input}
-                        onChange={e => setInput(e.target.value.toUpperCase())}
+
+                        onChange={e => setInput(e.target.value.toLowerCase())}
+                        // onChange={search}
+
                         option={data.symbol}
                     />
                     <br />
-                    <button className="bg-blue-600 hover:bg-blue-700 duration-300 text-white shadow pl-2 rounded-r"
+
+                    {/* <button className="bg-blue-600 hover:bg-blue-700 duration-300 text-white shadow pl-2 rounded-r"
                         type="submit"
                         onClick={search}>
                         Réinitialiser
-                    </button>
+                    </button> */}
                 </form>
             </div>
             <div className="grid lg:grid-cols-4 gap-12 sm:grid-cols-1">
@@ -53,7 +55,8 @@ export default function Search({ data }) {
                         if (input == "") {
 
                             return
-                        } else if (crypt.symbol.toUpperCase().includes(input.toUpperCase())) {
+                        }
+                        else if (crypt.symbol.toLowerCase().match(regex) || crypt.name.toLowerCase().match(regex)) {
 
                             return crypt
                         }
@@ -98,7 +101,10 @@ export async function getStaticProps() {
     const data = await getAllCrypto()
 
 
-    return { props: { data } }
+    return {
+        props: { data },
+        revalidate: 1,
+    }
 
 }
 
