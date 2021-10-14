@@ -12,6 +12,7 @@ export default function Search({ data }) {
 
     const regex = new RegExp(`^${input}`);
 
+    console.log(data, 'data2');
     const search = e => {
         // setInput(e.target.value.toLowerCase());
         e.preventDefault()
@@ -90,6 +91,7 @@ export default function Search({ data }) {
 
             </div>
         </Layout>
+
     )
 
 };
@@ -99,11 +101,11 @@ export default function Search({ data }) {
 export async function getStaticProps() {
 
     const data = await getAllCrypto()
-
+    console.log(data, 'data');
 
     return {
         props: { data },
-        revalidate: 1,
+
     }
 
 }
