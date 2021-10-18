@@ -1,6 +1,6 @@
-import Layout from "../../components/Layout";
+// import Layout from "../../components/Layout";
 
-import { getAllExchange } from "../../lib/api";
+import { getAllExchange } from "../lib/api";
 import Head from "next/head";
 
 
@@ -8,13 +8,12 @@ import Head from "next/head";
 
 
 
-export default function Search({ data }) {
+export default function SearchExc({ data }) {
 
     return (
-        <Layout page='Accueil Crypto'>
-            <Head>
-                <title>{data.id}</title>
-            </Head>
+        // <Layout page='Accueil Crypto'>
+        <>
+           
             <h2 className="text-white pb-3"> Voici le top 20 des plus gros exchanges disponibles  </h2>
 
             <div className="grid lg:grid-cols-3 gap-12 md:grid-cols-2 md:gap-9 sm:grid-cols-1 sm:gap-5">
@@ -39,8 +38,9 @@ export default function Search({ data }) {
                     ))}
 
             </div>
-
-        </Layout>
+</>
+        // </Layout> 
+        
     )
 
 };
