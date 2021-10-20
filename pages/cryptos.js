@@ -1,32 +1,39 @@
-import Layout from "../../components/Layout";
+import Layout from "../components/Layout";
 import Link from "next/link";
-import { getTenCrypto } from "../../lib/api";
+import { getTenCrypto } from "../lib/api";
+import React, { useRef, useState } from "react";
+import Image from "next/image";
+import { Swiper, SwiperSlide } from "swiper/react";
+
+// import Swiper core and required modules
+import SwiperCore, {
+    Pagination
+} from 'swiper';
+
+// install Swiper modules
+SwiperCore.use([Pagination]);
 
 
 export default function Home({ res }) {
 
 
+
     return (<Layout page='Accueil Crypto'>
-        <Link href="/posts/crypto" scroll>
-            <button className="bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-yellow-500 px-10 py-2 m-2 rounded-3xl hover:shadow-md border-2 border-blue-300">Search Crypto</button>
-        </Link>
-        <Link href="/posts/exchanges" scroll>
-            <button className="bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-yellow-500 px-10 py-2 m-2 rounded-3xl hover:shadow-md border-2 border-blue-300">List Exchanges</button>
-        </Link>
-
-
-
-        <ul className="grid lg:grid-cols-3 gap-12 md:grid-cols-2 md:gap-9 sm:grid-cols-1 sm:gap-5">
+        {/* <ul className="grid lg:grid-cols-3 gap-12 md:grid-cols-2 md:gap-9 sm:grid-cols-1 sm:gap-5"> */}
+        <Swiper slidesPerView={4} spaceBetween={30} centeredSlides={true} pagination={{
+            "clickable": true
+        }} className="mySwiper pt-4">
             {res.map((crypt, index) => (
-                <li key={index} className="relative hover:shadow-md p-5 border border-blue-700 rounded-3xl bg-gradient-to-r from-green-100 to-blue-200 mx-2">
+                <SwiperSlide key={index} >
                     <Link href={`/`}>
                         <a className="rounded-md">
                             <div className="text-center">
-                                {/*  eslint-disable-next-line @next/next/no-img-element */}
-                                <img src={crypt.logo_url} alt={crypt.name} className="w-20 h-20 mx-auto m-6" />
+
+                                {/* <img src={crypt.logo_url} alt={crypt.name} className="w-10 h-10 mx-auto m-6" /> */}
+                                <Image src={crypt.logo_url} alt={crypt.name} width={50} height={50} layout="responsive" />
 
                             </div>
-                            <h2 className="text-center text-2xl uppercase tracking-wider font-bold text-gray-800">{crypt.name}</h2>
+                            <h2 className="text-center text-xl uppercase tracking-wider font-bold text-gray-800">{crypt.name}</h2>
                             <p className="text-center text-gray-700">{crypt.symbol}</p>
                             <h3 className="text-center text-black">Price: {parseFloat(crypt.price).toFixed(2).toLocaleString()} EUR</h3>
                             <p className="text-center text-gray-800">Variation 1d: <span>{parseFloat(crypt['1d'].price_change).toFixed(2) + "EUR"}</span>
@@ -43,9 +50,13 @@ export default function Home({ res }) {
 
                         </a>
                     </Link>
-                </li>
+                </SwiperSlide>
+
+
             ))}
-        </ul>
+        </Swiper>
+        {/* </ul> */}
+
     </Layout>);
 
 }
