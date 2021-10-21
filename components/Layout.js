@@ -30,7 +30,7 @@ export default function Layout({ children, pages }) {
                 <meta property="twitter:image" content="https://crypto-nft.vercel.app/_next/image?url=%2Fimg%2Fmain.jpg&w=384&q=50"></meta>
             </Head>
             <header className="container-lg">
-                <h1 className="text-3xl mb-2 text-white">Crypto and NFT </h1>
+                <h1 className="text-3xl mb-2 text-white">Crypto-monnaies and NFT </h1>
 
                 <div className="border-t-4">
                 </div>

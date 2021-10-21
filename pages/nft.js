@@ -1,13 +1,13 @@
 import Footer from "../components/Footer";
 import Layout from "../components/Layout";
 import { getNft } from "../lib/api";
+import Image from "next/image";
+import { auto } from "@popperjs/core";
+
 
 
 
 export default function Home({ res1 }) {
-
-
-
 
     return (
         <>
@@ -23,8 +23,8 @@ export default function Home({ res1 }) {
 
                             <a className="rounded-md h-10" href={nft.asset.collection.external_url} target="_blank" rel="noreferrer">
                                 <div className="text-center" >
-                                    {/*  eslint-disable-next-line @next/next/no-img-element */}
-                                    <img src={nft.asset.asset_contract.image_url} alt={nft.asset.asset_contract.image_url} className="w-20 h-20 mx-auto m-6" />
+
+                                    <img alt="pas d'image" width={auto} height={auto} layout='fill' className="w-20 h-20 mx-auto m-6" src={(nft.asset.asset_contract.image_url !== null) ? (nft.asset.asset_contract.image_url) : (<span>pas image</span>)} />
 
                                 </div>
                                 <h2 className="text-center text-2xl uppercase tracking-wider font-bold text-gray-800"> Name NFT : {nft.asset.asset_contract.name}</h2>

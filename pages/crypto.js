@@ -23,7 +23,7 @@ export default function Search({ data }) {
 
     return (
         <>
-            <Layout page='Accueil Crypto'>
+            <Layout page='top 250'>
                 <Head>
                     <title>{data.id}</title>
                 </Head>

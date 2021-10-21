@@ -1,63 +1,54 @@
 import Layout from "../components/Layout";
 import Link from "next/link";
 import { getTenCrypto } from "../lib/api";
-import React, { useRef, useState } from "react";
+
 import Image from "next/image";
-import { Swiper, SwiperSlide } from "swiper/react";
 
-// import Swiper core and required modules
-import SwiperCore, {
-    Pagination
-} from 'swiper';
-
-// install Swiper modules
-SwiperCore.use([Pagination]);
 
 
 export default function Home({ res }) {
 
 
 
-    return (<Layout page='Accueil Crypto'>
-        {/* <ul className="grid lg:grid-cols-3 gap-12 md:grid-cols-2 md:gap-9 sm:grid-cols-1 sm:gap-5"> */}
-        <Swiper slidesPerView={4} spaceBetween={30} centeredSlides={true} pagination={{
-            "clickable": true
-        }} className="mySwiper pt-4">
-            {res.map((crypt, index) => (
-                <SwiperSlide key={index} >
-                    <Link href={`/`}>
-                        <a className="rounded-md">
-                            <div className="text-center">
+    return (
+        <Layout page='top ten'>
+            <ul className="grid lg:grid-cols-5 lg:gap-2 md:grid-cols-2 md:gap-9 sm:grid-cols-1 sm:gap-5">
 
-                                {/* <img src={crypt.logo_url} alt={crypt.name} className="w-10 h-10 mx-auto m-6" /> */}
-                                <Image src={crypt.logo_url} alt={crypt.name} width={50} height={50} layout="responsive" />
+                {res.map((crypt, index) => (
+                    <li key={index} className="relative hover:shadow-md p-3 border border-blue-700 rounded-2xl bg-gradient-to-r from-green-100 to-blue-200 mx-2" >
+                        <Link href={`/`}>
+                            <a className="rounded-md">
+                                <div className="text-center">
 
-                            </div>
-                            <h2 className="text-center text-xl uppercase tracking-wider font-bold text-gray-800">{crypt.name}</h2>
-                            <p className="text-center text-gray-700">{crypt.symbol}</p>
-                            <h3 className="text-center text-black">Price: {parseFloat(crypt.price).toFixed(2).toLocaleString()} EUR</h3>
-                            <p className="text-center text-gray-800">Variation 1d: <span>{parseFloat(crypt['1d'].price_change).toFixed(2) + "EUR"}</span>
-                                {crypt["1d"].price_change_pct < 0 ?
-                                    (<span className="text-red-600 font-bold">&#x2798; </span>) :
-                                    (<span className="text-green-600 font-bold">&#x279A; </span>)}
-                            </p>
-                            <p className="text-center text-gray-800">Variation 30d: <span>{parseFloat(crypt['30d'].price_change).toFixed(2) + "EUR"}</span>
-                                {crypt["30d"].price_change_pct < 0 ?
-                                    (<span className="text-red-600 font-bold">&#x2798; </span>) :
-                                    (<span className="text-green-600 font-bold">&#x279A; </span>)}
-                            </p>
+                                    {/* <img src={crypt.logo_url} alt={crypt.name} className="w-20 h-20 mx-auto m-6" /> */}
+                                    <Image src={crypt.logo_url} alt={crypt.name} width={100} height={100} />
 
-
-                        </a>
-                    </Link>
-                </SwiperSlide>
+                                </div>
+                                <h2 className="text-center text-l uppercase tracking-wider font-bold text--gray-700">{crypt.name}</h2>
+                                <p className="text-center text-red-700 font-bold">{crypt.symbol}</p>
+                                <h3 className="text-center text--gray-700">Price: {parseFloat(crypt.price).toFixed(2).toLocaleString()} EUR</h3>
+                                <p className="text-center text--gray-700">Variation 1d: <span>{parseFloat(crypt['1d'].price_change).toFixed(2) + "EUR"}</span>
+                                    {crypt["1d"].price_change_pct < 0 ?
+                                        (<span className="text-red-600 font-bold">&#x2798; </span>) :
+                                        (<span className="text-green-600 font-bold">&#x279A; </span>)}
+                                </p>
+                                <p className="text-center text--gray-700">Variation 30d: <span>{parseFloat(crypt['30d'].price_change).toFixed(2) + "EUR"}</span>
+                                    {crypt["30d"].price_change_pct < 0 ?
+                                        (<span className="text-red-600 font-bold">&#x2798; </span>) :
+                                        (<span className="text-green-600 font-bold">&#x279A; </span>)}
+                                </p>
 
 
-            ))}
-        </Swiper>
-        {/* </ul> */}
+                            </a>
+                        </Link>
+                    </li>
 
-    </Layout>);
+
+                ))}
+
+            </ul>
+
+        </Layout>);
 
 }
 

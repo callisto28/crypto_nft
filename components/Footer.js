@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 
 export default function Footer() {
     return (
@@ -7,9 +8,9 @@ export default function Footer() {
 
 
                 <ul className=" pt-5 pb-1 flex justify-around">
-                    <li className="text-white">A propos</li>
+                    <li className="text-white"> <Link href='./Apropos'>La crypto-monnaies ? </Link></li>
                     <li className="text-white"><a href="https://seb4dev.works/" target="_blank" rel="noreferrer">Seb4Dev</a></li>
-                    <li className="text-white">Mentions légales</li>
+                    {/* <li className="text-white">Mentions légales</li> */}
                 </ul>
 
             </footer>

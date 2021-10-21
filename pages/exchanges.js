@@ -1,48 +1,35 @@
 import Layout from "../components/Layout";
-import { getAllExchange } from "../lib/api";
 import Footer from "../components/Footer";
-import React, { useRef, useState } from "react";
 import Image from "next/image";
+//import api
+import { getAllExchange } from "../lib/api";
 
 
-// Import Swiper React components
-import { Swiper, SwiperSlide } from "swiper/react";
 
-import SwiperCore, {
-    Pagination
-} from 'swiper';
-import { Container } from "postcss";
 
-// install Swiper modules
-SwiperCore.use([Pagination]);
 
 export default function SearchExc({ data }) {
 
 
+
     return (
         <>
-            <Layout page='Accueil Crypto'>
 
+            <Layout page='Exchange'>
 
-                <h2 className="text-red-400 pb-10"> Voici le top 20 des plus gros exchanges disponibles  </h2>
+                <h2 className="text-red-600 pb-20"> Voici le top 10 des plus gros exchanges disponibles  </h2>
+                <div className="grid lg:grid-cols-5 lg:gap-1 md:grid-cols-2 md:gap-9 sm:grid-cols-1 sm:gap-5">
 
-                <div className="grid lg:grid-cols-1 gap-12 md:grid-cols-1 md:gap-9 sm:grid-row-2 sm:gap-2">
-                    <Swiper slidesPerView={4} spaceBetween={30} centeredSlides={true} pagination={{
-                        "clickable": true
-                    }} className="mySwiper">
+                    {data && data
+                        .map((exch, index) => (
 
-                        {data && data
-                            .map((exch, index) => (
-
-                                <SwiperSlide key={index} className="rounded-md ">
+                            <a key={index} className="rounded-md ">
+                                <div className="relative hover:shadow-md p-2 border border-blue-700 rounded-2xl bg-gradient-to-r from-green-100 to-blue-200 mx-2">
                                     <a className="rounded-md" href={exch.url} target="_blank" rel="noreferrer">
 
 
+                                        <Image src={exch.image} alt={exch.image} width={100} height={100} />
 
-                                        {/* <img src={exch.image} alt={exch.image} className="w-20 h-20 mx-auto m-6" /> */}
-                                        <div className="swiper-slide size align-text-top" >
-                                            <Image src={exch.image} alt={exch.image} width={20} height={20} layout="responsive" className="swiper-slide size align-top" />
-                                        </div>
                                         <h2 className="text-center text-l uppercase tracking-wider font-bold text-gray-800">{exch.name}</h2>
                                         <p className="text-center text-gray-700">Année de création : {exch.year_established}</p>
                                         <h3 className="text-center text-black">Classement exchange : {exch.trust_score_rank} </h3>
@@ -50,11 +37,12 @@ export default function SearchExc({ data }) {
 
 
                                     </a>
-                                </SwiperSlide>
-                            ))}
+                                </div>
 
+                            </a>
 
-                    </Swiper>
+                        ))}
+
                 </div>
 
             </Layout>
