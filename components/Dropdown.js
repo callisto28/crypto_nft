@@ -16,7 +16,7 @@ export default function MyDropdown() {
         <Menu>
             {({ open }) => (
                 <>
-                    <Menu.Button>info Crypto</Menu.Button>
+                    <Menu.Button className=" text-white font-bold rounded-2xl hover:bg-green-800 hover:text-white pr-3 pl-3">info Crypto</Menu.Button>
 
                     {/* Use the Transition component. */}
                     <Transition
@@ -32,7 +32,7 @@ export default function MyDropdown() {
                         <Menu.Items static>
                             <Menu.Item>
                                 {({ active }) => (
-                                    <MyLink href="../crypto" className={`${active && 'bg-green-500'} p-1 rounded-3xl`}>Top 250 crypto</MyLink>
+                                    <MyLink href="../crypto" className={`${active && 'bg-red-500'} pr-2 pl-2 rounded-3xl`}>Top 250 crypto</MyLink>
                                 )}
                             </Menu.Item>
 

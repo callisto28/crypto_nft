@@ -24,7 +24,12 @@ export default function Home({ res1 }) {
                             <a className="rounded-md h-10" href={nft.asset.collection.external_url} target="_blank" rel="noreferrer">
                                 <div className="text-center" >
 
-                                    <img alt="pas d'image" width={auto} height={auto} layout='fill' className="w-20 h-20 mx-auto m-6" src={(nft.asset.asset_contract.image_url !== null) ? (nft.asset.asset_contract.image_url) : (<span>pas image</span>)} />
+                                    <img className="w-20 h-20 mx-auto m-6" src={(nft.asset.asset_contract.image_url != "https//:") ? (nft.asset.asset_contract.image_url) : (<img src="/images/main.jpg" className="w-20 h-20 mx-auto m-6" />)} />
+                                    {/* <Image src={(nft.asset.asset_contract.image_url === null) 
+                                    ? 
+                                    (nft.asset.asset_contract.image_url)
+                                     : 
+                                    (<Image src="/images/main.jpg" alt="crypto" width={20} height={20} />)} alt="crypto" width={20} height={20} /> */}
 
                                 </div>
                                 <h2 className="text-center text-2xl uppercase tracking-wider font-bold text-gray-800"> Name NFT : {nft.asset.asset_contract.name}</h2>
@@ -36,18 +41,16 @@ export default function Home({ res1 }) {
                                     (<span className="text-red-600"> Aucune URL  </span>) :
                                     (<span className="text-blue-600">{nft.asset.collection.external_url} </span>)}</p>
                                 <h3 className="text-center">Event : {nft.event_type}</h3>
-                                <p className="text-center text-red-300">Eth Price :
+                                <p className="text-center text-red-300">
 
-                                    {(nft.payment_token === null) ? (<span className="text-red-600 ">Aucune valeur</span>) : (<span className="text-blue-600 ">{parseFloat(nft.payment_token.eth_price).toFixed(2)} ETH </span>)}
+                                    {(nft.payment_token === null) ? (<span className="text-red-600 ">Aucune valeur</span>) : (<span className="text-blue-600 ">{parseFloat(nft.payment_token.eth_price).toFixed(2)} ETH </span>)} =
 
 
-                                </p>
-                                <p className="text-center text-red-300">USD Price :
-
-                                    {(nft.payment_token === null) ? (<span className="text-red-600 ">Aucune valeur</span>) : (<span className="text-green-600 ">{parseFloat(nft.payment_token.usd_price).toFixed(2)} USD </span>)}
+                                    {(nft.payment_token === null) ? (<span className="text-red-600 ">Aucune valeur</span>) : (<span className="text-green-600 pl-1 ">{parseFloat(nft.payment_token.usd_price).toFixed(2)} USD </span>)}
 
 
                                 </p>
+
 
 
                             </a>
