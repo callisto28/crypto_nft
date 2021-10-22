@@ -8,7 +8,9 @@ export default function Home() {
   return (
     <>
       <Layout page='Accueil Crypto'>
-        <h2 className="text-center text-xl text-white"> Une crypto-monnaie est un type de monnaie cryptographique créé à partir de code informatique. Elles fonctionnent de manière autonome en dehors des systèmes bancaires et gouvernementaux traditionnels.</h2>
+        <h2 className="text-center text-xl text-white"> Une crypto-monnaie est un type de monnaie cryptographique créée à partir de code informatique.
+          <br />
+          Elles fonctionnent de manière autonome en dehors des systèmes bancaires et gouvernementaux traditionnels.</h2>
 
 
         <div className="flex flex-row justify-evenly m-5 p-6 lg:flex-row sm:flex-col">
