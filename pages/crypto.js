@@ -9,17 +9,8 @@ import Footer from "../components/Footer";
 export default function Search({ data }) {
 
     const [input, setInput] = useState([]);
-    // const [test, setTest] = useState();
-    // console.log(test, 'input');
 
     const regex = new RegExp(`^${input}`);
-
-    const search = e => {
-        // setInput(e.target.value.toLowerCase());
-        e.preventDefault()
-        // setTest(data)
-        setInput([])
-    }
 
     return (
         <>
@@ -27,8 +18,8 @@ export default function Search({ data }) {
                 <Head>
                     <title>{data.id}</title>
                 </Head>
-                <h2 className="text-white"> Voici la liste des 250 premières cryptomonnaies classées par leur Marketcap  </h2>
-                <h3 className="text-white"> Veuillez saisir la première lettre de la cryptomonnaie recherchée ou le nom de votre cryptomonnaie  </h3>
+
+                <h2 className="text-white"> Veuillez saisir la première lettre de la cryptomonnaie recherchée ou le nom de votre cryptomonnaie  </h2>
                 <span className="text-red-600"> Exemple : Bitcoin, BTC, btc </span>
                 <div className='p-8 justify-center items-center flex'>
 
@@ -39,17 +30,13 @@ export default function Search({ data }) {
                             value={input}
 
                             onChange={e => setInput(e.target.value.toLowerCase())}
-                            // onChange={search}
+
 
                             option={data.symbol}
                         />
                         <br />
 
-                        {/* <button className="bg-blue-600 hover:bg-blue-700 duration-300 text-white shadow pl-2 rounded-r"
-                        type="submit"
-                        onClick={search}>
-                        Réinitialiser
-                    </button> */}
+
                     </form>
                 </div>
                 <div className="grid lg:grid-cols-4 gap-12 sm:grid-cols-1">
@@ -81,12 +68,6 @@ export default function Search({ data }) {
                                             (<span className="text-green-600 font-bold">&#x279A; </span>)}
                                     </p>
 
-
-                                    {/* <p className="text-center text-gray-800">Variation sur 30d: <span>{parseFloat(crypt['30d'].price_change).toFixed(2) + "EUR"}</span>
-                                    {crypt["30d"].price_change_pct < 0 ?
-                                        (<span className="text-red-600 font-bold">&#x2798; </span>) :
-                                        (<span className="text-green-600 font-bold">&#x279A; </span>)}
-                                </p> */}
                                 </div>
                             </a>
                         ))}
