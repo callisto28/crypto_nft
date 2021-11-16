@@ -21,7 +21,7 @@ export default function Nav() {
                         </span>
                     </a>
                 </Link>
-                <button className=' inline-flex p-3 hover:bg-black rounded lg:hidden text-white ml-auto hover:text-white outline-none' onClick={handkeClick}>
+                <div className=' inline-flex p-3 hover:bg-black rounded lg:hidden text-white ml-auto hover:text-white outline-none' onClick={handkeClick} type="button">
                     <svg
                         className='w-6 h-6'
                         fill='none'
@@ -36,7 +36,7 @@ export default function Nav() {
                             d='M4 6h16M4 12h16M4 18h16'
                         />
                     </svg>
-                </button>
+                </div>
                 <div className={`${isOpen ? '' : 'hidden'} w-full lg:inline-flex lg:flex-grow lg:w-auto`}>
                     <div className="lg:inline-flex lg:flex-row lg:ml-auto lg:w-auto w-full lg:items-center items-start  flex flex-col lg:h-auto">
                         <Link href="/" scroll>
@@ -44,10 +44,10 @@ export default function Nav() {
                                 Accueil
                             </a>
                         </Link>
-                        <button className='lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-white font-bold items-center justify-center hover:bg-black hover:text-white '>
+                        <div className='lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-white font-bold items-center justify-center hover:bg-black hover:text-white ' type="button">
                             <MyDropdown />
-                        </button>
-                        <Link href="../cryptos">
+                        </div>
+                        <Link href="/cryptos">
                             <a className='lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-white font-bold items-center justify-center hover:bg-black hover:text-white '>
                                 Top 15 Cryptos
                             </a>
@@ -55,7 +55,7 @@ export default function Nav() {
                         </Link>
 
 
-                        <Link href="../nft">
+                        <Link href="/nft">
                             <a className='lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-white font-bold items-center justify-center hover:bg-black hover:text-white '>
                                 View NFT
                             </a>

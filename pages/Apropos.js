@@ -4,6 +4,7 @@ import Footer from "../components/Footer";
 export default function Apropos() {
     return (
         <>
+
             <Layout page='A propos'>
                 <div className="text-white text-center
                 ">
