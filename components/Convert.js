@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 
 
 const BASE_URL1 = `http://api.exchangeratesapi.io/v1/latest?access_key=42658788ee9ab0f98769c52d433f9971`
+
 // `${process.env.API_CONVERT}`
 
 function Convert() {
@@ -44,12 +45,12 @@ function Convert() {
     }, [fromCurrency, toCurrency])
 
     function handleFromAmountChange(e) {
-        setAmount(e.target.value.toString())
+        setAmount(e.target.value)
         setAmountInFromCurrency(true)
     }
 
     function handleToAmountChange(e) {
-        setAmount(e.target.value.toString())
+        setAmount(e.target.value)
         setAmountInFromCurrency(false)
     }
 
@@ -59,7 +60,7 @@ function Convert() {
             <CurrencyRow
                 currencyOptions={currencyOptions}
                 selectedCurrency={fromCurrency}
-                onChangeCurrency={e => setFromCurrency(e.target.value.toString())}
+                onChangeCurrency={e => setFromCurrency(e.target.value)}
                 onChangeAmount={handleFromAmountChange}
                 amount={fromAmount}
             />
@@ -67,7 +68,7 @@ function Convert() {
             <CurrencyRow
                 currencyOptions={currencyOptions}
                 selectedCurrency={toCurrency}
-                onChangeCurrency={e => setToCurrency(e.target.value.toString())}
+                onChangeCurrency={e => setToCurrency(e.target.value)}
                 onChangeAmount={handleToAmountChange}
                 amount={toAmount}
             />

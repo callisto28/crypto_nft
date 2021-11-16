@@ -12,18 +12,18 @@ export default function Home({ pages }) {
 
       <Layout page='Accueil Crypto'>
 
-        <div className="grid grid-cols-5 gap-5">
+        <div className="grid lg:grid-cols-5 gap-5 sm:grid-cols-4 sm:gap-x-8">
           <h2 className=" text-center text-xl  text-white col-start-2 col-span-3"> Une crypto-monnaie est un type de monnaie cryptographique créée à partir de code informatique.
             <br />
             Elles fonctionnent de manière autonome en dehors des systèmes bancaires et gouvernementaux traditionnels.</h2>
 
 
-          <div className="col-start-1 col-end-3 ">
+          <div className="lg:col-start-1 lg:col-end-3 sm:col-span-6">
 
             <Image src="/images/main.jpg" alt="crypto" width={600} height={450} />
 
           </div>
-          <div className="col-end-6 col-span-3 ">
+          <div className="lg:col-end-6 lg:col-span-3 sm:col-span-6 sm:text-center">
 
             <p className="text-center text-l text-white">Possibilité de Convertir ci-dessous EUR/USD, EUR/BTC ...et bien plus</p>
             <Convert />
