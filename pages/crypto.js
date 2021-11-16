@@ -3,6 +3,7 @@ import { useState } from "react";
 import { getAllCrypto } from "../lib/api";
 import Head from "next/head";
 import Footer from "../components/Footer";
+import Image from "next/image";
 
 
 
@@ -16,7 +17,7 @@ export default function Search({ data }) {
         <>
             <Layout page='top 250'>
                 <Head>
-                    <title>{data.id}</title>
+                    <title>Search on Top 250</title>
                 </Head>
 
                 <h2 className="text-white"> Veuillez saisir la première lettre de la cryptomonnaie recherchée ou le nom de votre cryptomonnaie  </h2>
@@ -54,15 +55,17 @@ export default function Search({ data }) {
                         map((crypt, index) => (
 
                             <a key={index} className="rounded-md ">
-                                <div className="relative hover:shadow-md p-5 border border-blue-700 rounded-2xl bg-gradient-to-r from-green-100 to-blue-200 mx-2">
+                                <div className="relative hover:shadow-md p-5 border border-blue-100 rounded-2xl bg-gradient-to-t from-black to-gray-500 mx-2">
 
-                                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                                    <img src={crypt.image} alt={crypt.image} className="w-20 h-20 mx-auto m-6" />
 
-                                    <h2 className="text-center text-xl uppercase tracking-wider font-bold text-gray-800">{crypt.name}</h2>
-                                    <p className="text-center text-gray-700">{crypt.symbol}</p>
-                                    <h3 className="text-center text-black">Price : {parseFloat(crypt.current_price).toLocaleString()} EUR </h3>
-                                    <p className="text-center text-gray-800"> % de variation : <span>{parseFloat(crypt.price_change_24h).toFixed(2) + "EUR"} en 24h</span>
+                                    {/* <img src={crypt.image} alt={crypt.image} className="w-20 h-20 mx-auto m-6" /> */}
+                                    <picture className="w-20 h-20 mx-auto m-6">
+                                        <Image src={crypt.image} alt={crypt.image} width={80} height={80} quality={100} />
+                                    </picture>
+                                    <h2 className="text-center text-xl uppercase tracking-wider font-bold text-white">{crypt.name}</h2>
+                                    <p className="text-center text-red-700 font-bold">{crypt.symbol}</p>
+                                    <h3 className="text-center text-white">Price : {parseFloat(crypt.current_price).toLocaleString()} EUR </h3>
+                                    <p className="text-center text-white"> % de variation : <span>{parseFloat(crypt.price_change_24h).toFixed(2) + "EUR"} en 24h</span>
                                         {crypt.price_change_percentage_24h < 0 ?
                                             (<span className="text-red-600 font-bold">&#x2798; </span>) :
                                             (<span className="text-green-600 font-bold">&#x279A; </span>)}

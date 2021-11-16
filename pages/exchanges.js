@@ -23,20 +23,20 @@ export default function SearchExc({ data }) {
                     {data && data
                         .map((exch, index) => (
 
-                            <a key={index} className="rounded-md ">
-                                <div className="relative hover:shadow-md p-5 border border-blue-700 rounded-2xl bg-gradient-to-r from-green-50 to-blue-100 mx-2">
-                                    <a className="rounded-md" href={exch.url} target="_blank" rel="noreferrer">
+                            <a key={index} className="rounded-md" href={exch.url} target="_blank" rel="noreferrer">
+                                <div className="relative hover:shadow-md p-5 border border-blue-100 rounded-2xl bg-gradient-to-t from-black to-gray-500 mx-2">
 
 
-                                        <Image src={exch.image} alt={exch.image} width={100} height={100} />
 
-                                        <h2 className="text-center text-sm uppercase tracking-wider font-bold text-gray-800">{exch.name}</h2>
-                                        <p className="text-center text-gray-700">Année de création : {exch.year_established}</p>
-                                        <h3 className="text-center text-black">Classement exchange : {exch.trust_score_rank} </h3>
-                                        <p className="text-center text-xs text-gray-800"> Pays : <span>{exch.country}</span></p>
+                                    <Image src={exch.image} alt={exch.image} width={100} height={100} />
+
+                                    <h2 className="text-center text-sm uppercase tracking-wider font-bold text-gray-200">{exch.name}</h2>
+                                    <p className="text-center text-gray-300">Année de création : <span className="text-green-600">{exch.year_established}</span></p>
+                                    <h3 className="text-center text-gray-200">Classement exchange : <span className="text-red-600">{exch.trust_score_rank}</span> </h3>
+                                    <p className="text-center text-xs text-gray-300"> Pays : <span className="text-purple-400">{exch.country}</span></p>
 
 
-                                    </a>
+
                                 </div>
 
                             </a>
