@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 
 const BASE_URL1 = `http://api.exchangeratesapi.io/v1/latest?access_key=${process.env.API_CONVERT}`
 
-// `${process.env.API_CONVERT}`
+
 
 function Convert() {
 
@@ -28,7 +28,7 @@ function Convert() {
         fetch(BASE_URL1)
             .then(res => res.json())
             .then(data => {
-                console.log("truc");
+
                 const firstCurrency = Object.keys(data.rates)[0]
 
                 setCurrencyOptions([...Object.keys(data.rates)])
@@ -59,7 +59,7 @@ function Convert() {
 
     return (
         <>
-            <h1>Convert</h1>
+            <h1 className="text-white">Convert</h1>
             <CurrencyRow
                 currencyOptions={currencyOptions}
                 selectedCurrency={fromCurrency}
@@ -67,7 +67,7 @@ function Convert() {
                 onChangeAmount={handleFromAmountChange}
                 amount={fromAmount}
             />
-            <div className="equals">=</div>
+            <div className="equals text-white">=</div>
             <CurrencyRow
                 currencyOptions={currencyOptions}
                 selectedCurrency={toCurrency}
