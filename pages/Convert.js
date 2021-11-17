@@ -1,4 +1,4 @@
-import CurrencyRow from './CurrencyRow'
+import CurrencyRow from '../components/CurrencyRow'
 import React, { useEffect, useState } from 'react';
 
 

@@ -1,7 +1,7 @@
 import Layout from "../components/Layout";
 import Image from "next/image";
 import Footer from "../components/Footer";
-import Convert from "./modules/Convert";
+import Convert from "./Convert";
 
 
 export default function Home({ pages }) {
