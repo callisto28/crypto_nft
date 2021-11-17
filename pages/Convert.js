@@ -1,4 +1,3 @@
-import CurrencyRow from '../components/CurrencyRow'
 import React, { useEffect, useState } from 'react';
 
 
@@ -73,7 +72,7 @@ function Convert() {
                 selectedCurrency={toCurrency}
                 onChangeCurrency={e => setToCurrency(e.target.value)}
                 onChangeAmount={handleToAmountChange}
-                amount={toAmount}
+                amount={toAmount.toFixed(6)}
             />
         </>
     );
@@ -81,3 +80,23 @@ function Convert() {
 
 
 export default Convert;
+
+export function CurrencyRow(props) {
+    const {
+        currencyOptions,
+        selectedCurrency,
+        onChangeCurrency,
+        onChangeAmount,
+        amount
+    } = props
+    return (
+        <div>
+            <input type="number" className="input" value={amount.toString()} onChange={onChangeAmount} />
+            <select value={selectedCurrency} onChange={onChangeCurrency}>
+                {currencyOptions.map(option => (
+                    <option key={option} value={option}>{option}</option>
+                ))}
+            </select>
+        </div>
+    )
+}
