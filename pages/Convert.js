@@ -1,12 +1,13 @@
-import CurrencyRow from './CurrencyRow'
+import CurrencyRow from '../components/CurrencyRow'
 import React, { useEffect, useState } from 'react';
 
 
-const BASE_URL1 = `http://api.exchangeratesapi.io/v1/latest?access_key=42658788ee9ab0f98769c52d433f9971`
+const BASE_URL1 = `http://api.exchangeratesapi.io/v1/latest?access_key=${process.env.API_CONVERT}`
 
 // `${process.env.API_CONVERT}`
 
 function Convert() {
+
     const [currencyOptions, setCurrencyOptions] = useState([])
     const [fromCurrency, setFromCurrency] = useState()
     const [toCurrency, setToCurrency] = useState()
@@ -27,6 +28,7 @@ function Convert() {
         fetch(BASE_URL1)
             .then(res => res.json())
             .then(data => {
+                console.log("truc");
                 const firstCurrency = Object.keys(data.rates)[0]
 
                 setCurrencyOptions([...Object.keys(data.rates)])
@@ -34,6 +36,7 @@ function Convert() {
                 setToCurrency(firstCurrency)
                 setExchangeRate(data.rates[firstCurrency])
             })
+
     }, [])
 
     useEffect(() => {
