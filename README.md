@@ -12,4 +12,7 @@ https://api.nomics.com/
 -2- Api pour les NFT
 https://opensea.io/
 
-## En travaux
+## Mise en place d'un convertisseur EUR/USD, USD/BTC ...
+
+-3- Api utilisé pour la conversion
+http://api.exchangeratesapi.io/
