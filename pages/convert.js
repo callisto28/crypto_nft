@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { CurrencyRow } from '../../components/CurrencyRow';
-import { convert } from '../../lib/api'
-
-
+import { CurrencyRow } from '../components/CurrencyRow';
+import { convert } from '../lib/api'
 
 export default function Convert({ data }) {
 
+    console.log(data, 'return data');
 
     const [fromCurrency, setFromCurrency] = useState(['Select'])
     const [toCurrency, setToCurrency] = useState()
@@ -23,23 +22,18 @@ export default function Convert({ data }) {
     }
 
 
-
-
     useEffect(() => {
         convert()
             .then(data => {
                 if (data.error) {
-                    console.log(data.error) //handle error
+                    console.log(data.error)
                 } else {
-                    const exchangeRate = data.rates[toCurrency] / data.rates[fromCurrency] //exchange rate
+                    const exchangeRate = data.rates[toCurrency] / data.rates[fromCurrency]
 
-                    setExchangeRate(exchangeRate) //set the exchange rate
+                    setExchangeRate(exchangeRate)
                 }
             })
     }, [fromCurrency, toCurrency])
-
-
-
 
     function handleFromAmountChange(e) {
         setAmount(e.target.value)
@@ -53,8 +47,7 @@ export default function Convert({ data }) {
 
     return (
         <>
-
-            <h1 className="text-white">Convert</h1>
+            <h2 className="text-white">Convert</h2>
             <div className="flex flex-col">
                 <CurrencyRow
                     currencyOptions={['Select', 'EUR', 'USD', 'BTC']}
@@ -64,6 +57,7 @@ export default function Convert({ data }) {
                     amount={fromAmount}
                 />
                 <br />
+
                 <div className="text-white">=</div>
                 <CurrencyRow
                     currencyOptions={['Select', 'EUR', 'USD', 'BTC']}
@@ -77,15 +71,13 @@ export default function Convert({ data }) {
 }
 
 
+// export async function getStaticProps(params) {
 
+//     const data = await convert(params)
+//     console.log(data, 'data du get');
+//     return {
+//         props: { data: data },
+//         revalidate: 1,
+//     }
 
-export async function getStaticProps() {
-
-    const data = await convert()
-
-    return {
-        props: { data },
-        revalidate: 1,
-    }
-
-}
+// }
