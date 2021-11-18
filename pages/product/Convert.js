@@ -7,8 +7,8 @@ const BASE_URL1 = `http://api.exchangeratesapi.io/v1/latest?access_key=${process
 
 function Convert() {
 
-    const [currencyOptions, setCurrencyOptions] = useState([])
-    const [fromCurrency, setFromCurrency] = useState()
+
+    const [fromCurrency, setFromCurrency] = useState(['Select'])
     const [toCurrency, setToCurrency] = useState()
     const [exchangeRate, setExchangeRate] = useState()
     const [amount, setAmount] = useState(0)
@@ -23,28 +23,17 @@ function Convert() {
         fromAmount = amount / exchangeRate
     }
 
+
     useEffect(() => {
-        fetch(BASE_URL1)
+        fetch(`${BASE_URL1}`)
             .then(res => res.json())
             .then(data => {
-
-                const firstCurrency = Object.keys(data.rates)[0]
-
-                setCurrencyOptions([...Object.keys(data.rates)])
-                setFromCurrency(data.base)
-                setToCurrency(firstCurrency)
-                setExchangeRate(data.rates[firstCurrency])
+                const exchangeRate = data.rates[toCurrency] / data.rates[fromCurrency]
+                console.log(exchangeRate, 'exchange');
+                setExchangeRate(exchangeRate)
             })
-
-    }, [])
-
-    useEffect(() => {
-        if (fromCurrency != null && toCurrency != null) {
-            fetch(`${BASE_URL1}&base=${fromCurrency}&symbols=${toCurrency}`)
-                .then(res => res.json())
-                .then(data => setExchangeRate(data.rates[toCurrency]))
-        }
     }, [fromCurrency, toCurrency])
+
 
     function handleFromAmountChange(e) {
         setAmount(e.target.value)
@@ -58,22 +47,25 @@ function Convert() {
 
     return (
         <>
+
             <h1 className="text-white">Convert</h1>
-            <CurrencyRow
-                currencyOptions={currencyOptions}
-                selectedCurrency={fromCurrency}
-                onChangeCurrency={e => setFromCurrency(e.target.value)}
-                onChangeAmount={handleFromAmountChange}
-                amount={fromAmount}
-            />
-            <div className="equals text-white">=</div>
-            <CurrencyRow
-                currencyOptions={currencyOptions}
-                selectedCurrency={toCurrency}
-                onChangeCurrency={e => setToCurrency(e.target.value)}
-                onChangeAmount={handleToAmountChange}
-                amount={toAmount.toFixed(6)}
-            />
+            <div className="flex flex-col">
+                <CurrencyRow
+                    currencyOptions={['Select', 'EUR', 'USD', 'BTC']}
+                    selectedCurrency={fromCurrency}
+                    onChangeCurrency={e => setFromCurrency(e.target.value)}
+                    onChangeAmount={handleFromAmountChange}
+                    amount={fromAmount}
+                />
+                <br />
+                <div className="text-white">=</div>
+                <CurrencyRow
+                    currencyOptions={['Select', 'EUR', 'USD', 'BTC']}
+                    selectedCurrency={toCurrency}
+                    onChangeCurrency={e => setToCurrency(e.target.value)}
+                    onChangeAmount={handleToAmountChange}
+                    amount={toAmount}
+                /></div>
         </>
     );
 }
@@ -83,8 +75,8 @@ export default Convert;
 
 export function CurrencyRow(props) {
     const {
-        currencyOptions,
-        selectedCurrency,
+        currencyOptions = ['BTC', 'EUR', 'USD'],
+        selectedCurrency = ['BTC', 'EUR', 'USD'],
         onChangeCurrency,
         onChangeAmount,
         amount
@@ -92,7 +84,7 @@ export function CurrencyRow(props) {
     return (
         <div>
             <input type="number" className="input" value={amount.toString()} onChange={onChangeAmount} />
-            <select value={selectedCurrency} onChange={onChangeCurrency}>
+            <select multiple={false} value={selectedCurrency} onChange={onChangeCurrency}>
                 {currencyOptions.map(option => (
                     <option key={option} value={option}>{option}</option>
                 ))}
