@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { CurrencyRow } from '../../components/CurrencyRow';
-import { convert } from '../../lib/api'
+
+
+const BASE_URL1 = `http://api.exchangeratesapi.io/v1/latest?access_key=${process.env.API_CONVERT}`
 
 
 
-export default function Convert({ data }) {
+function Convert() {
 
 
     const [fromCurrency, setFromCurrency] = useState(['Select'])
@@ -23,22 +24,15 @@ export default function Convert({ data }) {
     }
 
 
-
-
     useEffect(() => {
-        convert()
+        fetch(`${BASE_URL1}`)
+            .then(res => res.json())
             .then(data => {
-                if (data.error) {
-                    console.log(data.error) //handle error
-                } else {
-                    const exchangeRate = data.rates[toCurrency] / data.rates[fromCurrency] //exchange rate
-
-                    setExchangeRate(exchangeRate) //set the exchange rate
-                }
+                const exchangeRate = data.rates[toCurrency] / data.rates[fromCurrency]
+                console.log(exchangeRate, 'exchange');
+                setExchangeRate(exchangeRate)
             })
     }, [fromCurrency, toCurrency])
-
-
 
 
     function handleFromAmountChange(e) {
@@ -77,15 +71,24 @@ export default function Convert({ data }) {
 }
 
 
+export default Convert;
 
-
-export async function getStaticProps() {
-
-    const data = await convert()
-
-    return {
-        props: { data },
-        revalidate: 1,
-    }
-
+export function CurrencyRow(props) {
+    const {
+        currencyOptions = ['BTC', 'EUR', 'USD'],
+        selectedCurrency = ['BTC', 'EUR', 'USD'],
+        onChangeCurrency,
+        onChangeAmount,
+        amount
+    } = props
+    return (
+        <div>
+            <input type="number" className="input" value={amount.toString()} onChange={onChangeAmount} />
+            <select multiple={false} value={selectedCurrency} onChange={onChangeCurrency}>
+                {currencyOptions.map(option => (
+                    <option key={option} value={option}>{option}</option>
+                ))}
+            </select>
+        </div>
+    )
 }
