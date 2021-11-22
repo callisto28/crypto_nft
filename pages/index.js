@@ -1,8 +1,8 @@
 import Layout from "../components/Layout";
 import Image from "next/image";
 import Footer from "../components/Footer";
-// import Convert from "./convert";
-import Test from "../components/Test";
+import Convert from "./convert";
+// import Test from "../components/Test";
 
 
 
@@ -28,8 +28,8 @@ export default function Home({ }) {
           <div className="lg:col-end-6 lg:col-span-3 sm:col-span-6 sm:text-center">
 
             <p className="text-center text-l text-white">Possibilité de Convertir ci-dessous EUR/USD, EUR/BTC ...et bien plus</p>
-            {/* <Convert /> */}
-            <Test />
+            <Convert />
+            {/* <Test /> */}
 
           </div>
 

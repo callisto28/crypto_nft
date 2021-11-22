@@ -4,7 +4,6 @@ import { convert } from '../lib/api'
 
 export default function Convert({ data }) {
 
-    console.log(data, 'return data');
 
     const [fromCurrency, setFromCurrency] = useState(['Select'])
     const [toCurrency, setToCurrency] = useState()
@@ -22,18 +21,20 @@ export default function Convert({ data }) {
     }
 
 
-    useEffect(() => {
-        convert()
-            .then(data => {
-                if (data.error) {
-                    console.log(data.error)
-                } else {
-                    const exchangeRate = data.rates[toCurrency] / data.rates[fromCurrency]
+    // useEffect(() => {
+    //     convert()
+    //         .then(data => {
+    if (data === undefined) {
+        console.log(data, 'dans le if')
+    } else {
+        const exchangeRate = data.rates[toCurrency] / data.rates[fromCurrency]
 
-                    setExchangeRate(exchangeRate)
-                }
-            })
-    }, [fromCurrency, toCurrency])
+        setExchangeRate(exchangeRate)
+    }
+    //         })
+    // },
+    [fromCurrency, toCurrency]
+    // )
 
     function handleFromAmountChange(e) {
         setAmount(e.target.value)
@@ -47,7 +48,7 @@ export default function Convert({ data }) {
 
     return (
         <>
-            <h2 className="text-white">Convert</h2>
+            <h2 className="text-white">Convert getStatic</h2>
             <div className="flex flex-col">
                 <CurrencyRow
                     currencyOptions={['Select', 'EUR', 'USD', 'BTC']}
@@ -71,13 +72,10 @@ export default function Convert({ data }) {
 }
 
 
-// export async function getStaticProps(params) {
+export const getStaticProps = async () => {
+    const data = await convert()
+    console.log(data, 'data');
 
-//     const data = await convert(params)
-//     console.log(data, 'data du get');
-//     return {
-//         props: { data: data },
-//         revalidate: 1,
-//     }
+    return { props: { data } }
+}
 
-// }
