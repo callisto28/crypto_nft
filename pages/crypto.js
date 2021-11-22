@@ -8,7 +8,7 @@ import Image from "next/image";
 
 
 export default function Search({ data }) {
-    console.log(data, 'crypto');
+
     const [input, setInput] = useState([]);
 
     const regex = new RegExp(`^${input}`);

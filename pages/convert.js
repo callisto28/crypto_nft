@@ -21,20 +21,20 @@ export default function Convert({ data }) {
     }
 
 
-    // useEffect(() => {
-    //     convert()
-    //         .then(data => {
-    if (data === undefined) {
-        console.log(data, 'dans le if')
-    } else {
-        const exchangeRate = data.rates[toCurrency] / data.rates[fromCurrency]
+    useEffect(() => {
+        convert()
+            .then(data => {
+                if (data === undefined) {
 
-        setExchangeRate(exchangeRate)
-    }
-    //         })
-    // },
-    [fromCurrency, toCurrency]
-    // )
+                } else {
+                    const exchangeRate = data.rates[toCurrency] / data.rates[fromCurrency]
+
+                    setExchangeRate(exchangeRate)
+                }
+            })
+    },
+        [fromCurrency, toCurrency]
+    )
 
     function handleFromAmountChange(e) {
         setAmount(e.target.value)
@@ -74,7 +74,7 @@ export default function Convert({ data }) {
 
 export const getStaticProps = async () => {
     const data = await convert()
-    console.log(data, 'data');
+
 
     return { props: { data } }
 }
