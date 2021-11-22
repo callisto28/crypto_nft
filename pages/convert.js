@@ -20,21 +20,19 @@ export default function Convert({ data }) {
         fromAmount = amount / exchangeRate
     }
 
-
     useEffect(() => {
         convert()
             .then(data => {
-                if (data === undefined) {
-
+                if (data.error) {
+                    console.log(data.error)
                 } else {
                     const exchangeRate = data.rates[toCurrency] / data.rates[fromCurrency]
 
                     setExchangeRate(exchangeRate)
                 }
             })
-    },
-        [fromCurrency, toCurrency]
-    )
+    }, [fromCurrency, toCurrency])
+
 
     function handleFromAmountChange(e) {
         setAmount(e.target.value)
@@ -72,10 +70,10 @@ export default function Convert({ data }) {
 }
 
 
-export const getStaticProps = async () => {
-    const data = await convert()
+// export const getStaticProps = async () => {
+//     const data = await convert()
 
 
-    return { props: { data } }
-}
+//     return { props: { data } }
+// }
 
