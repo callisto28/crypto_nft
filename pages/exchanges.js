@@ -17,7 +17,7 @@ export default function SearchExc({ data }) {
 
             <Layout page='Exchange'>
 
-                <h2 className="text-red-600 pb-20"> Voici le top 10 des plus gros exchanges disponibles  </h2>
+                <h2 className="text-red-600 pb-6"> Voici le top 10 des plus gros exchanges disponibles  </h2>
                 <div className="grid lg:grid-cols-3 lg:gap-4 md:grid-cols-2 md:gap-9 sm:grid-cols-1 sm:gap-5">
 
                     {data && data
