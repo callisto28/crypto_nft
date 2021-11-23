@@ -18,18 +18,18 @@ export default function Layout({ children, pages }) {
                     <meta property="og:url" content="https://crypto-nft.vercel.app/" />
                     <meta property="og:title" content="FOURNY Sébastien - Développeur Web" key="title" />
                     <meta property="og:description" content="Application qui permet de visualiser le top10 des cryptomonnaies ainsi que les NFT en cour d'evenement, 1er réalisation sous NextJS" />
-                    <meta property="og:image" content="https://crypto-nft.vercel.app/_next/image?url=%2Fimages%2Fmain.jpg&w=640&q=75" />
+                    <meta property="og:image" content="http://localhost:3000/_next/image?url=%2Fimages%2Fmain.png&w=640&q=75" />
 
                     {/* <!-- Twitter --> */}
                     <meta property="twitter:card" content="summary_large_image" />
                     <meta property="twitter:url" content="https://crypto-nft.vercel.app/" />
                     <meta property="twitter:title" content="FOURNY Sébastien - Développeur Web" />
                     <meta property="twitter:description" content="Application qui permet de visualiser le top10 des cryptomonnaies ainsi que les NFT en cour d'evenement, 1er réalisation sous NextJS" />
-                    <meta property="twitter:image" content="https://crypto-nft.vercel.app/_next/image?url=%2Fimages%2Fmain.jpg&w=640&q=75"></meta>
+                    <meta property="twitter:image" content="http://localhost:3000/_next/image?url=%2Fimages%2Fmain.png&w=640&q=75"></meta>
                 </Head>
                 <header className="container-lg">
                     <Nav pages={pages} />
-                    <h1 className="text-3xl mb-2 text-white"> Les crypto-monnaies et les events NFT </h1>
+                    <h1 className="text-3xl mb-2 text-white"> Les crypto-monnaies et NFT </h1>
 
                     <div className="border-t-4">
                     </div>
