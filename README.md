@@ -1,3 +1,5 @@
+# IN PROGRESS
+
 # Création d'une Application CRYPTO / NFT
 
 ## Mise en place de Next.JS
@@ -12,7 +14,16 @@ https://api.nomics.com/
 -2- Api pour les NFT
 https://opensea.io/
 
-## Mise en place d'un convertisseur EUR/USD, USD/BTC ...
+## Mise en place d'une Video présentation
 
--3- Api utilisé pour la conversion
-http://api.exchangeratesapi.io/
+-1- Ajout d'un reportage effectué par ARTE sur la cryptomonnaies et son créateur Satochi
+
+## Possible Feature
+
+-1- Possibilité de séléction des favoris
+
+-2- Une présentation explicative des NFT
+
+-3- Info sur les Metaverses
+
+-4- ...
