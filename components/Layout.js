@@ -1,6 +1,7 @@
 import Head from 'next/head';
 import Nav from './Nav';
 
+
 export default function Layout({ children, pages }) {
 
     return (
@@ -11,21 +12,21 @@ export default function Layout({ children, pages }) {
                 <Head>
                     <title>Crypto/NFT</title>
                     <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-                    <meta name="title" content="FOURNY Sébastien - Développeur Web" />
+                    <meta name="title" content="Check your favorite crypto / nft" />
                     <meta name="description" content="Application qui permet de visualiser le top10 des cryptomonnaies ainsi que les NFT en cour d'evenement, 1er réalisation sous NextJS"></meta>
                     {/* <!-- Open Graph / Facebook --> */}
                     <meta property="og:type" content="website" />
                     <meta property="og:url" content="https://crypto-nft.vercel.app/" />
-                    <meta property="og:title" content="FOURNY Sébastien - Développeur Web" key="title" />
+                    <meta property="og:title" content="Check your favorite crypto / nft" key="title" />
                     <meta property="og:description" content="Application qui permet de visualiser le top10 des cryptomonnaies ainsi que les NFT en cour d'evenement, 1er réalisation sous NextJS" />
-                    <meta property="og:image" content="http://localhost:3000/_next/image?url=%2Fimages%2Fmain.png&w=640&q=75" />
+                    <meta property="og:image" content="https://seb4dev.works/media/Crypto_NFT.png" />
 
                     {/* <!-- Twitter --> */}
                     <meta property="twitter:card" content="summary_large_image" />
                     <meta property="twitter:url" content="https://crypto-nft.vercel.app/" />
-                    <meta property="twitter:title" content="FOURNY Sébastien - Développeur Web" />
+                    <meta property="twitter:title" content="Check your favorite crypto / nft" />
                     <meta property="twitter:description" content="Application qui permet de visualiser le top10 des cryptomonnaies ainsi que les NFT en cour d'evenement, 1er réalisation sous NextJS" />
-                    <meta property="twitter:image" content="http://localhost:3000/_next/image?url=%2Fimages%2Fmain.png&w=640&q=75"></meta>
+                    <meta property="twitter:image" content="https://seb4dev.works/media/Crypto_NFT.png"></meta>
                 </Head>
                 <header className="container-lg">
                     <Nav pages={pages} />
