@@ -9,7 +9,7 @@ export default function Footer() {
 
                 <ul className="flex justify-around">
                     <li className="text-white"> <Link href='/apropos'>La crypto-monnaies ? </Link></li>
-                    <li className="text-white"><a href="https://seb4dev.works/" target="_blank" rel="noreferrer">Seb4Dev</a></li>
+                    <li className="text-white"><a href="https://sebfordev.me/" target="_blank" rel="noreferrer">Seb4Dev</a></li>
 
                 </ul>
 
